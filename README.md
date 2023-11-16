@@ -2,11 +2,15 @@
 
 🤗 HuggingFace Hub Collection at https://huggingface.co/collections/argilla/notus-7b-dpo-fine-tune-of-zephyr-7b-sft-655529d7c73cb6c830e9555a
 
-<img width="702" alt="image" src="https://github.com/argilla-io/notus-7b-dpo/assets/36760800/49bddbd2-ecfc-46d6-8d1d-1cb760dfe08b">
+<div align="center">
+  <img width="702" alt="image" src="https://github.com/argilla-io/notus-7b-dpo/assets/36760800/49bddbd2-ecfc-46d6-8d1d-1cb760dfe08b">
+</div>
 
 💥 Chat with Notus at https://argilla-notus-chat-ui.hf.space/ (powered by [`huggingface/chat-ui`](https://github.com/huggingface/chat-ui))
 
-<img width="1624" alt="image" src="https://github.com/argilla-io/notus-7b-dpo/assets/36760800/a950f7f2-74ea-4873-a314-3afd1d4d7ac8">
+<div align="center">
+  <img width="1624" alt="image" src="https://github.com/argilla-io/notus-7b-dpo/assets/36760800/a950f7f2-74ea-4873-a314-3afd1d4d7ac8">
+</div>
 
 ## Installation
 
