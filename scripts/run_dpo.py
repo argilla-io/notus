@@ -69,7 +69,7 @@ def main():
     # logger.info(f"Training/evaluation parameters {training_args}")
 
     # Set seed for reproducibility
-    # set_seed(training_args.seed)
+    set_seed(training_args.seed)
 
     # Increase distributed timeout to 3h to enable push to Hub to complete
     accelerator = Accelerator()

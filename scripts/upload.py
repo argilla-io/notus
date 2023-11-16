@@ -2,8 +2,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 import torch
 
-import os
 import argparse
+
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -15,6 +15,7 @@ def get_args():
     parser.add_argument("--include-eval", action="store_true")
 
     return parser.parse_args()
+
 
 def main():
     args = get_args()
@@ -28,23 +29,24 @@ def main():
     )
     print(f"Loading PEFT: {args.peft}")
     model = PeftModel.from_pretrained(base_model, args.peft)
-    
+
     if args.merge:
         print(f"Running merge_and_unload")
         model = model.merge_and_unload()
-    
+
     model.save_pretrained(f"{args.out}", safe_serialization=True, max_shard_size="5GB")
-    
+
     tokenizer = AutoTokenizer.from_pretrained(args.base)
-    tokenizer.save_pretrained(f"{args.out}") 
+    tokenizer.save_pretrained(f"{args.out}")
 
     if args.push:
         print(f"Saving to hub ...")
-        model.push_to_hub(f"{args.out}", private=True) # , use_temp_dir=False)
-        tokenizer.push_to_hub(f"{args.out}", private=True) # , use_temp_dir=False)
+        model.push_to_hub(f"{args.out}", private=True)  # , use_temp_dir=False)
+        tokenizer.push_to_hub(f"{args.out}", private=True)  # , use_temp_dir=False)
 
     if args.include_eval:
         from huggingface_hub import HfApi
+
         api = HfApi()
         for file in ["all_results.json", "eval_results.json"]:
             api.upload_file(
@@ -54,5 +56,6 @@ def main():
                 repo_type="model",
             )
 
-if __name__ == "__main__" :
+
+if __name__ == "__main__":
     main()
