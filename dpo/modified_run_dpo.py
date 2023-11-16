@@ -72,7 +72,7 @@ def main():
     # set_seed(training_args.seed)
 
     # Increase distributed timeout to 3h to enable push to Hub to complete
-    # accelerator = Accelerator()
+    accelerator = Accelerator()
 
     ###############
     # Load datasets (modified)
