@@ -37,13 +37,13 @@ Finally, if you are willing to push your models to the HuggingFace Hub, you shou
 ## DPO Fine-Tuning
 
 ```shell
-WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo-full ACCELERATE_LOG_LEVEL=info accelerate launch --config_file recipes/accelerate_configs/deepspeed_zero3.yaml recipes/notus-7b/dpo/modified_run_dpo.py recipes/notus-7b/dpo/config_full.yaml
+WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/deepspeed_zero3.yaml scripts/run_dpo.py train_configs/config.yaml --use_flash_attention_2
 ```
 
 Alternatively, if you prefer to use LoRA, you can also run:
 
 ```shell
-WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo-lora ACCELERATE_LOG_LEVEL=info accelerate launch --config_file recipes/accelerate_configs/multi_gpu.yaml recipes/notus-7b/dpo/modified_run_dpo.py recipes/notus-7b/dpo/config_lora.yaml 
+WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/multi_gpu.yaml scripts/run_dpo.py train_configs/config_lora.yaml --use_flash_attention_2
 ```
 
 > [!WARNING]
