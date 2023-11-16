@@ -66,7 +66,7 @@ def main():
     # Log on each process the small summary:
     logger.info(f"Model parameters {model_args}")
     logger.info(f"Data parameters {data_args}")
-    # logger.info(f"Training/evaluation parameters {training_args}")
+    logger.info(f"Training/evaluation parameters {training_args}")
 
     # Set seed for reproducibility
     set_seed(training_args.seed)
@@ -80,7 +80,7 @@ def main():
     raw_dataset = get_datasets(
         data_args, splits=data_args.dataset_splits
     )  # TODO: remove dep with `get_datasets`
-    split_dataset = raw_dataset["train"].train_test_split(test_size=2000, seed=42, shuffle=True)  # type: ignore
+    split_dataset = raw_dataset["train"].train_test_split(test_size=2000, seed=training_args.seed, shuffle=True)  # type: ignore
 
     dataset = DatasetDict(
         {"train": split_dataset["train"], "test": split_dataset["test"]}
