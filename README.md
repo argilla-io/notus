@@ -17,9 +17,7 @@
 This wouldn't have been possible without the amazing work from the HuggingFace H4 Team and [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook)!
 
 ```bash
-git clone https://github.com/huggingface/alignment-handbook.git
-cd ./alignment-handbook/
-python -m pip install .
+pip install git+https://github.com/huggingface/alignment-handbook.git
 ```
 
 Finally, if you are willing to push your models to the HuggingFace Hub, you should also login first via
@@ -37,7 +35,7 @@ Finally, if you are willing to push your models to the HuggingFace Hub, you shou
 ## DPO Fine-Tuning
 
 ```shell
-WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/deepspeed_zero3.yaml scripts/run_dpo.py train_configs/config.yaml --use_flash_attention_2
+DS_SKIP_CUDA_CHECK=1 WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/deepspeed_zero3.yaml scripts/run_dpo.py train_configs/config.yaml
 ```
 
 Alternatively, if you prefer to use LoRA, you can also run:
