@@ -38,14 +38,14 @@ max_length: 1024
 max_prompt_length: 512
 num_train_epochs: 3
 optim: rmsprop
-output_dir: data/notus-7b-dpo-lora # It is handy to append `hub_model_revision` to keep track of your local experiments
+output_dir: data/notus-7b-dpo-lora
 per_device_train_batch_size: 2
 per_device_eval_batch_size: 4
 push_to_hub: true
 hub_model_id: argilla/notus-7b-dpo-lora
 hub_private_repo: true
 save_strategy: epoch
-save_total_limit: 2 
+save_total_limit: 1
 seed: 42
 warmup_ratio: 0.1
 report_to:
