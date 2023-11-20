@@ -17,9 +17,8 @@
 This wouldn't have been possible without the amazing work from the HuggingFace H4 Team and [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook)!
 
 ```bash
-git clone https://github.com/huggingface/alignment-handbook.git
-cd ./alignment-handbook/
-python -m pip install .
+pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cu118
+pip install git+https://github.com/huggingface/alignment-handbook.git
 ```
 
 Finally, if you are willing to push your models to the HuggingFace Hub, you should also login first via
@@ -33,17 +32,18 @@ Finally, if you are willing to push your models to the HuggingFace Hub, you shou
 > python -m pip install flash-attn --no-build-isolation
 > python -m pip install wandb
 > ```
+> If you installed `wandb` above you should also login via `wandb login`
 
 ## DPO Fine-Tuning
 
 ```shell
-WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo-full ACCELERATE_LOG_LEVEL=info accelerate launch --config_file recipes/accelerate_configs/deepspeed_zero3.yaml recipes/notus-7b/dpo/modified_run_dpo.py recipes/notus-7b/dpo/config_full.yaml
+DS_SKIP_CUDA_CHECK=1 WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/deepspeed_zero3.yaml scripts/run_dpo.py train_configs/config_a100_40gb.yaml
 ```
 
 Alternatively, if you prefer to use LoRA, you can also run:
 
 ```shell
-WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo-lora ACCELERATE_LOG_LEVEL=info accelerate launch --config_file recipes/accelerate_configs/multi_gpu.yaml recipes/notus-7b/dpo/modified_run_dpo.py recipes/notus-7b/dpo/config_lora.yaml 
+WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/multi_gpu.yaml scripts/run_dpo.py train_configs/config_a100_40gb_lora.yaml
 ```
 
 > [!WARNING]
