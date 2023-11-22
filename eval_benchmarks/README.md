@@ -65,10 +65,45 @@ Results from Mistral and Zephyr models retrieved from https://huggingface.co/spa
     accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks drop --batch_size 2 --num_fewshot 3 --output_path drop_results
     ```
 
-## AlpacaEval (WIP)
+## AlpacaEval
 
-...
+### Install
 
+Install the AlpacaEval Python package as follows:
+
+```bash
+pip install alpaca-eval
+```
+
+Then set the environment variable with your OpenAI API key:
+
+```bash
+export OPENAI_API_KEY="<OPENAI_API_KEY>"
+```
+
+And finally, we prepare the configuration file to use to run the evaluation using AlpacaEval: 
+
+```yaml
+zephyr-7b-beta:
+  prompt_template: "notus-prompt.txt"
+  fn_completions: "huggingface_local_completions"
+  completions_kwargs:
+    model_name: "argilla/notus-7b-v1"
+    model_kwargs:
+      torch_dtype: "bfloat16"
+    max_new_tokens: 2048
+    temperature: 0.7
+    top_p: 1.0
+    do_sample: True
+  pretty_name: "Notus 7B v1"
+  link: "https://huggingface.co/argilla/notus-7b-v1"
+```
+
+Finally, we run it as:
+
+```bash
+alpaca_eval evaluate_from_model alpaca_eval-config/notus-7b-v1.yaml
+```
 
 ## MT-Bench (WIP)
 
