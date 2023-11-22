@@ -1,5 +1,5 @@
-zephyr-7b-beta:
-  prompt_template: "notus-prompt.txt"
+notus-7b-v1:
+  prompt_template: "notus-7b-v1/prompt.txt"
   fn_completions: "huggingface_local_completions"
   completions_kwargs:
     model_name: "argilla/notus-7b-v1"

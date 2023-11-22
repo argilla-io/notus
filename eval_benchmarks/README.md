@@ -75,17 +75,37 @@ Install the AlpacaEval Python package as follows:
 pip install alpaca-eval
 ```
 
+Besides `alpaca-eval` we'll also need to install the following dependencies required to run the inference over the LLM:
+
+```bash
+pip install "torch==2.1.0" transformers peft optimum --quiet
+```
+
+Then we log-in into the Hugging Face Hub via `huggingface-cli login`, as our model is still private.
+
 Then set the environment variable with your OpenAI API key:
 
 ```bash
 export OPENAI_API_KEY="<OPENAI_API_KEY>"
 ```
 
-And finally, we prepare the configuration file to use to run the evaluation using AlpacaEval: 
+And finally, we prepare the prompt and the configuration file to use to run the evaluation using AlpacaEval:
+
+* Prompt:
+
+```txt
+<|system|>
+</s>
+<|user|>
+{instruction}</s>
+<|assistant|>
+```
+
+* Config File:
 
 ```yaml
-zephyr-7b-beta:
-  prompt_template: "notus-prompt.txt"
+notus-7b-v1:
+  prompt_template: "notus-7b-v1/prompt.txt"
   fn_completions: "huggingface_local_completions"
   completions_kwargs:
     model_name: "argilla/notus-7b-v1"
@@ -99,12 +119,10 @@ zephyr-7b-beta:
   link: "https://huggingface.co/argilla/notus-7b-v1"
 ```
 
+Then we need to move both files `config.yaml` and `prompt.txt` under the `alpaca_eval/model_configs/notus-7b-v1/` directory, with the names `config.yaml` and `prompt.txt`, respectively.
+
 Finally, we run it as:
 
 ```bash
-alpaca_eval evaluate_from_model alpaca_eval-config/notus-7b-v1.yaml
+alpaca_eval evaluate_from_model notus-7b-v1/config.yaml
 ```
-
-## MT-Bench (WIP)
-
-...
