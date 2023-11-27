@@ -65,9 +65,52 @@ Results from Mistral and Zephyr models retrieved from https://huggingface.co/spa
     accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks drop --batch_size 2 --num_fewshot 3 --output_path drop_results
     ```
 
-## AlpacaEval (WIP)
+## AlpacaEval
 
-...
+The machine that we had at time was one from IDC with HPUs, so we generated the outputs using the script `habana/scripts/inference.py` from this repo:
+
+```sh
+python inference.py --model_name_or_path argilla/notus-7b-v1 --dataset_name tatsu-lab/alpaca_eval --dataset_subset alpaca_eval --dataset_split "eval[:400]" --dataset_column instruction --max_new_tokens 2048 --output_file notus-7b-v1-1.jsonl
+```
+
+```sh
+python inference.py --model_name_or_path argilla/notus-7b-v1 --dataset_name tatsu-lab/alpaca_eval --dataset_subset alpaca_eval --dataset_split "eval[400:]" --dataset_column instruction --max_new_tokens 2048 --output_file notus-7b-v1-2.jsonl
+```
+
+We executed the script twice, one for the first 400 examples and another one for the rest of the examples in order to avoid memory issues. Then we merged the outputs in a single file and executed the `alpaca_eval`:
+
+```sh
+export OPENAI_API_KEY=<YOUR_API_KEY>
+pip install alpaca-eval
+alpaca_eval evaluate --model_outputs notus-7b-v1.json
+```
+
+### Results
+
+Results can be found in `alpaca_eval/annotation_alpaca_eval_gpt4.json` and `leaderboard.csv`:
+
+```diff
+                       win_rate  standard_error  n_total  avg_length
+gpt4_turbo                97.70            0.51      804        2049
+gpt4                      95.28            0.72      805        1365
+llama-2-70b-chat-hf       92.66            0.91      804        1790
++ notus-7b-v1               91.42            0.99      804        2139
+claude-2                  91.36            0.99      804        1069
+cohere                    90.62            1.02      805        1983
+chatgpt                   89.37            1.08      804         827
+claude                    88.39            1.11      805        1082
+llama-2-13b-chat-hf       81.09            1.38      804        1513
+wizardlm-13b              75.31            1.51      804         985
+guanaco-65b               71.80            1.59      805        1249
+llama-2-7b-chat-hf        71.37            1.59      805        1479
+vicuna-13b                70.43            1.61      805        1037
+oasst-rlhf-llama-33b      66.52            1.66      805        1079
+text_davinci_003          50.00            0.00      805         307
+falcon-40b-instruct       45.71            1.75      805         662
+alpaca-farm-ppo-human     41.24            1.73      805         803
+alpaca-7b                 26.46            1.54      805         396
+text_davinci_001          15.17            1.24      804         296
+```
 
 
 ## MT-Bench (WIP)
