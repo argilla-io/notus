@@ -111,6 +111,10 @@ def main():
                     "content": "",
                 },
                 {
+                    "role": "user",
+                    "content": example["instruction"],
+                },
+                {
                     "role": "assistant",
                     "content": example["chosen_response"],
                 },
