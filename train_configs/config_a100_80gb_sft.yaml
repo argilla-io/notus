@@ -17,7 +17,7 @@ do_eval: true
 evaluation_strategy: epoch
 gradient_accumulation_steps: 2
 gradient_checkpointing: true
-hub_model_id: notus-7b-v1.1
+hub_model_id: argilla/notus-7b-v1.1
 hub_strategy: every_save
 learning_rate: 2.0e-05
 log_level: info
