@@ -34,6 +34,12 @@ Finally, if you are willing to push your models to the HuggingFace Hub, you shou
 > ```
 > If you installed `wandb` above you should also login via `wandb login`
 
+## SFT Fine-Tuning
+
+```bash
+DS_SKIP_CUDA_CHECK=1 WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-sft ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/deepspeed_zero3_a100_80gb_sft.yaml scripts/run_sft.py train_configs/config_a100_80gb_sft.yaml
+```
+
 ## DPO Fine-Tuning
 
 ```shell
