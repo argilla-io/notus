@@ -67,7 +67,7 @@ Results from Mistral and Zephyr models retrieved from https://huggingface.co/spa
 
 ## AlpacaEval
 
-The machine that we had at time was one from IDC with HPUs, so we generated the outputs using the script `habana/scripts/inference.py` from this repo:
+The machine that we had at that time was one from Intel Developer Cloud (IDC) with HPUs, so we generated the outputs using the script `habana/scripts/inference.py` from this repo:
 
 ```sh
 python inference.py --model_name_or_path argilla/notus-7b-v1 --dataset_name tatsu-lab/alpaca_eval --dataset_subset alpaca_eval --dataset_split "eval[:400]" --dataset_column instruction --max_new_tokens 2048 --output_file notus-7b-v1-1.jsonl
