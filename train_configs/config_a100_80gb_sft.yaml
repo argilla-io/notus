@@ -27,6 +27,7 @@ lr_scheduler_type: cosine
 max_seq_length: 2048
 max_steps: -1
 num_train_epochs: 3
+warmup_ratio: 0.1
 output_dir: data/notus-7b-v1.1
 overwrite_output_dir: true
 per_device_eval_batch_size: 16
