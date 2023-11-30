@@ -18,15 +18,17 @@ Notus 7B v1 is a DPO fine-tuned version of Zephyr 7B Beta SFT fine-tuned on Ultr
 - **License:** MIT (same as Zephyr 7B-beta)
 - **Finetuned from model:** [`alignment-handbook/zephyr-7b-sft-full`](https://huggingface.co/alignment-handbook/zephyr-7b-sft-full)
 
-### Model Sources
+### Model Variants
 
-- **Repository:** https://github.com/argilla-io/notus-7b
-- **Paper:** N/A
-- **Demo:** https://argilla-notus-chat-ui.hf.space/
+- [`notus-7b-v1`](https://huggingface.co/argilla/notus-7b-v1): full DPO fine-tuning
+- [`notus-7b-v1-lora`](https://huggingface.co/argilla/notus-7b-v1): DPO fine-tuning using LoRA
+
+> [!NOTE]
+> Even though we have the LoRA weights within the 🤗 Hub, most of the experimentation / evaluation has been done using `notus-7b-v1` to do a fair comparison with `zephyr-7b-beta`.
 
 ## Performance
 
-### Chat benchmarks
+### Chat Benchmarks
 
 Table adapted from Zephyr-7b-β original table for [MT-Bench](https://huggingface.co/spaces/lmsys/mt-bench) and [AlpacaEval](https://tatsu-lab.github.io/alpaca_eval/) benchmarks. Notus stays on par with Zephyr on MT-Bench, while surpassing Zephyr, Claude 2, and Cohere Command on AlpacaEval. Making Notus the most-competitive 7B commercial model on AlpacaEval.
 
@@ -48,7 +50,7 @@ Table adapted from Zephyr-7b-β original table for [MT-Bench](https://huggingfac
 | WizardLM v1.0 |  70B |dSFT |7.71 |-|
 | Xwin-LM v0.1 |   70B |dPPO |- |95.57|
 
-## Academic benchmarks
+## Academic Benchmarks
 
 * Results from [OpenLLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard):
 
@@ -64,21 +66,33 @@ Table adapted from Zephyr-7b-β original table for [MT-Bench](https://huggingfac
   |[HuggingFaceH4/zephyr-7b-beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta) | 52.15 | 62.03 | 84.36 | 61.07 | 57.45 | 77.74 | 12.74 | 9.66 |
   | **[argilla/notus-7b-v1](https://huggingface.co/argilla/notus-7b-v1)** | **54.09** | 64.25 | 84.90 | 61.69 | 52.77 | 74.51 | 39.5 | 0.98 |
 
-  Results from Mistral and Zephyr models retrieved from https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard, which may not be fair as they are using a different revision of `lm-eval-harness`, so may be worth re-running the benchmarks locally for Zephyr 7B Beta for a fair comparison.
+  The results from Mistral and Zephyr models retrieved from https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard, which **may not be fair as they are using a different revision of `lm-eval-harness`**, so may be worth re-running the benchmarks locally for Zephyr 7B Beta for a fair comparison.
 
 ## Training Details
 
 ### Training Hardware
 
-We used a VM with 8 x A100 40GB hosted in Lambda Labs.
+We used VMs from different cloud providers based on their availability, but most of the experiments have been run in a VM with 8 x A100 40GB hosted in Google Cloud Platform (GCP), while some others in a similar VM in Lambda Labs, and lastly some extra experiments in an 8 x A100 80GB VM in RunPod. Meaning everything's adapted to work within 8 x A100 40GB.
 
 ### Training Data
 
 We used a a new curated version of [`openbmb/UltraFeedback`](https://huggingface.co/datasets/openbmb/UltraFeedback), named [`argilla/ultrafeedback-binarized-avg-rating-for-dpo`](https://huggingface.co/argilla/ultrafeedback-binarized-avg-rating-for-dpo).
 
-### Training metrics
+### Training Metrics
 
-...
+We've tracked all our metrics with [Weights and Biases](https://wandb.ai) (❤️), even though those are already within the 🤗 Hub using TensorBoard. But the metrics below are from an internal Weights and Biases report we've created for this project.
+
+#### `notus-7b-v1`
+
+<div align="center">
+  <img width="873" alt="image" src="https://github.com/argilla-io/notus-7b/assets/36760800/87b3f32b-41ff-4283-840f-b8d193b0cb34"/>
+</div>
+
+#### `notus-7b-v1-lora`
+
+<div align="center">
+  <img width="872" alt="image" src="https://github.com/argilla-io/notus-7b/assets/36760800/aa81e8c3-da90-4e4c-a378-3c9902b421af"/>
+</div>
 
 ## Reproduce
 
