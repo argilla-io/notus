@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>💨 Notus Handbook</h1>
+  <h1>💨 Notus</h1>
   <img src="https://github.com/argilla-io/notus-7b/assets/36760800/d50bbae1-16ec-40c5-8254-5c4ea60435da" alt="A banner representing Notus, the wind god of the south, in a mythical and artistic style. The banner features a strong, swirling breeze, embodying the warm, wet character of the southern wind. Gracefully flowing across the scene are several paper planes, caught in the gentle yet powerful gusts of Notus. The background is a blend of warm colors, symbolizing the heat of the south, with hints of blue and green to represent the moisture carried by this wind. The overall atmosphere is one of dynamic movement and warmth."/>
 </div>
 
@@ -35,15 +35,31 @@ Being able to fine-tune LLMs while still keeping a data-first approach wouldn't 
 
 ## Citation
 
+Since most of the content is ported / adapted from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook), we recommend citing their work.
+
 ```bibtex
-@misc{notus_handbook2023,
+@misc{alignment_handbook2023,
+  author = {Lewis Tunstall and Edward Beeching and Nathan Lambert and Nazneen Rajani and Alexander M. Rush and Thomas Wolf},
+  title = {The Alignment Handbook},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/huggingface/alignment-handbook}}
+}
+```
+
+Additionally, if you find any of the contents within this repository useful, please feel free to use the following BibTeX cite as well:
+
+```bibtex
+@misc{notus2023,
   author = {Alvaro Bartolome and Gabriel Martin and Daniel Vila},
-  title = {Notus Handbook},
+  title = {Notus},
   year = {2023},
   publisher = {GitHub},
   journal = {GitHub Repository},
-  howpublished = {\url{https://github.com/argilla-io/notus-handbook}}
+  howpublished = {\url{https://github.com/argilla-io/notus}}
 }
 ```
+
 > [!NOTE]
 > Alphabetically ordered by last name due to equal contribution.
