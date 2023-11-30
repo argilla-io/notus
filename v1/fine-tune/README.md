@@ -1,4 +1,4 @@
-Follow the steps below to reproduce the results of Notus 7B v1.
+## Reproduce `notus-7b-v1` and `notus-7b-v1-lora`
 
 ### Installation
 
@@ -22,23 +22,7 @@ Finally, if you are willing to push your models to the HuggingFace Hub, you shou
 > ```
 > If you installed `wandb` above you should also login via `wandb login`
 
-### SFT Fine-Tuning
-
-```bash
-DS_SKIP_CUDA_CHECK=1 WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-sft ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/deepspeed_zero3_a100_80gb_sft.yaml scripts/run_sft.py train_configs/config_a100_80gb_sft.yaml
-```
-
-### DPO Fine-Tuning
-
-```shell
-DS_SKIP_CUDA_CHECK=1 WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/deepspeed_zero3.yaml scripts/run_dpo.py train_configs/config_a100_40gb.yaml
-```
-
-Alternatively, if you prefer to use LoRA, you can also run:
-
-```shell
-WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/multi_gpu.yaml scripts/run_dpo.py train_configs/config_a100_40gb_lora.yaml
-```
+#### Installation on GCP
 
 > [!WARNING]
 > When trying to run the scripts mentioned above and also the ones defined in the original `alignment-handbook`, we found out that the `bitsandbytes` dependency was running into some issues with the environment variable `GOOGLE_VM_CONFIG_LOCK_FILE`, so if you are running on GCP you should edit the `bitsandbytes/cuda_setup/env_vars.py` file to include the environment variable within the `to_be_ignored` function.
@@ -69,3 +53,20 @@ WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info acc
 >      return env_var in ignorable
 > ```
 > More information at https://github.com/TimDettmers/bitsandbytes/issues/620
+
+### DPO Fine-tuning
+
+To reproduce the DPO full fine-tuning, you can run the following command (assuming you are running it in a VM with 8 x A100 40GB GPUs, see [`configs/`](configs/) for more information on the different configuration files):
+
+```shell
+WANDB_ENTITY=<YOUR_WANDB_ENTITY> WANDB_PROJECT=<YOUR_WANDB_PROJECT> ACCELERATE_LOG_LEVEL=info accelerate launch --config_file configs/accelerate/a100_40gb/deepspeed_zero3.yaml run_dpo.py configs/dpo/full/a100_40gb.yaml
+```
+
+Alternatively, if you prefer to use LoRA, you can also run:
+
+```shell
+WANDB_ENTITY=<YOUR_WANDB_ENTITY> WANDB_PROJECT=<YOUR_WANDB_PROJECT> ACCELERATE_LOG_LEVEL=info accelerate launch --config_file configs/accelerate/multi_gpu.yaml run_dpo.py configs/dpo/lora/a100_40gb.yaml
+```
+
+> [!TIP]
+> If the `torch` version that you have installed is not compiled with CUDA 11.8, you may need to set the `DS_SKIP_CUDA_CHECK=1` environment variable, so that DeepSpeed doesn't complain about the CUDA version; but note that it may also cause some issues and it is not recommended, so please make sure the `torch` version you have installed is compiled with the required CUDA version.
