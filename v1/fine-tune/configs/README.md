@@ -2,7 +2,7 @@
 
 This directory contains the configuration files either ported and/or adapted from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook) to suit our specific use cases and needs.
 
-You will find the following directories and files:
+Here you will find the following directories and files:
 
 * `accelerate/`: contains the 🤗 `accelerate` configuration files to run the distributed training in multiple GPUs either using or not [microsoft/DeepSpeed](https://github.com/microsoft/DeepSpeed), and adapted for both 8 x A100 40GB (more accesible, cheaper), and for 8 x A100 80GB (less accesible, more expensive, used by HuggingFace H4). The 🤗 `accelerate` configuration used for the full fine-tunes is the DeepSpeed ZeRO 3, while the one for the LoRA ones is `multi_gpu.yaml`, and will work equally on both VMs.
 

@@ -7,6 +7,16 @@
 
 Notus 7B v1 is a DPO fine-tuned version of Zephyr 7B Beta SFT fine-tuned on UltraFeedback, but using the average of the different criterias to binarize the data, instead of the critique score; so that the chosen response is based on the average rather than on the critique score. All the training code and configuration has been adapted / ported from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook).
 
+## Contents
+
+Here you will find the following directories and files:
+
+* [`fine-tune/`](./fine-tune/): contains the fine-tuning scripts adapted from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook) to suit our specific use cases and needs.
+
+* [`eval/`](./eval/): contains the evaluation instructions and results from the benchmarks [`EleutherAI/lm-eval-harness`](https://github.com/EleutherAI/lm-eval-harness) (from the `big-refactor` branch), `MT-Bench` in [`lm-sys/FastChat`](https://github.com/lm-sys/FastChat), and `AlpacaEval` in [`tatsu-lab/alpaca_eval`](https://github.com/tatsu-lab/alpaca_eval).
+
+* [`alt/`](./alt/): contains some files that have been used for experimentation purposes, but are not needed / required in order to reproduce and / or understand the work done with Notus 7B v1. Disclaimer: expect those files to change, be messy, and not work as intended.
+
 ## Model Details
 
 ### Model Description

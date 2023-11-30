@@ -1,6 +1,14 @@
-## Reproduce `notus-7b-v1` and `notus-7b-v1-lora`
+# Fine-tuning
 
-### Installation
+Here you will find the following directories and files:
+
+* [`configs/`](configs/): contains the configuration files either ported and/or adapted from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook) to suit our specific use cases and needs.
+
+* [`run_dpo.py`](run_dpo.py): contains the main script to run the DPO fine-tuning, and is adapted from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook) to suit our specific use cases and needs. This is the main script that we used to fine-tune Notus 7B v1, and the file you should use to fine-tune your own models.
+
+* [`run_sft.py`](run_sft.py): contains the main script to run the SFT fine-tuning, and is adapted from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook) to suit our specific use cases and needs. Note that this was only an attempt of SFT fine-tuning the previous SFT fine-tuned dataset of Zephyr 7B Beta, and was just created for experimentation purposes, as the Notus 7B v1 model is just the DPO fine-tune over the SFT fine-tuned version of Zephyr 7B Beta.
+
+## Installation
 
 This wouldn't have been possible without the amazing work from the HuggingFace H4 Team and [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook)!
 
@@ -22,7 +30,7 @@ Finally, if you are willing to push your models to the HuggingFace Hub, you shou
 > ```
 > If you installed `wandb` above you should also login via `wandb login`
 
-#### Installation on GCP
+### Installation on GCP
 
 > [!WARNING]
 > When trying to run the scripts mentioned above and also the ones defined in the original `alignment-handbook`, we found out that the `bitsandbytes` dependency was running into some issues with the environment variable `GOOGLE_VM_CONFIG_LOCK_FILE`, so if you are running on GCP you should edit the `bitsandbytes/cuda_setup/env_vars.py` file to include the environment variable within the `to_be_ignored` function.
@@ -54,7 +62,7 @@ Finally, if you are willing to push your models to the HuggingFace Hub, you shou
 > ```
 > More information at https://github.com/TimDettmers/bitsandbytes/issues/620
 
-### DPO Fine-tuning
+## DPO Fine-tuning
 
 To reproduce the DPO full fine-tuning, you can run the following command (assuming you are running it in a VM with 8 x A100 40GB GPUs, see [`configs/`](configs/) for more information on the different configuration files):
 
