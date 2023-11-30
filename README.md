@@ -22,7 +22,7 @@ Being able to fine-tune LLMs while still keeping a data-first approach wouldn't 
 ### 🤗 HuggingFace Hub Collection
 
 <div align="center">
-  <img width="702" alt="image" src="https://github.com/argilla-io/notus/assets/36760800/49bddbd2-ecfc-46d6-8d1d-1cb760dfe08b">
+  <img width="680" alt="image" src="https://github.com/argilla-io/notus/assets/36760800/08876ba2-ee55-4b80-9256-e0809fb2baf0">
   <p>Available at: https://huggingface.co/collections/argilla/notus-7b-v1-655529d7c73cb6c830e9555a</p>
 </div>
 
