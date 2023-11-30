@@ -1,0 +1,81 @@
+{
+  "results": {
+    "gsm8k": {
+      "exact_match,get-answer": 0.3949962092494314,
+      "exact_match_stderr,get-answer": 0.01346535496997321,
+      "alias": "gsm8k"
+    }
+  },
+  "configs": {
+    "gsm8k": {
+      "task": "gsm8k",
+      "group": [
+        "math_word_problems"
+      ],
+      "dataset_path": "gsm8k",
+      "dataset_name": "main",
+      "training_split": "train",
+      "test_split": "test",
+      "fewshot_split": "train",
+      "doc_to_text": "Question: {{question}}\nAnswer:",
+      "doc_to_target": "{{answer}}",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 5,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true,
+          "ignore_case": true,
+          "ignore_punctuation": false,
+          "regexes_to_ignore": [
+            ",",
+            "\\$",
+            "(?s).*#### "
+          ]
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "\n\n",
+          "Question:"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      },
+      "repeats": 1,
+      "filter_list": [
+        {
+          "name": "get-answer",
+          "filter": [
+            {
+              "function": "regex",
+              "regex_pattern": "#### (\\-?[0-9\\.\\,]+)"
+            },
+            {
+              "function": "take_first"
+            }
+          ]
+        }
+      ],
+      "should_decontaminate": false
+    }
+  },
+  "versions": {
+    "gsm8k": "Yaml"
+  },
+  "config": {
+    "model": "hf",
+    "model_args": "pretrained=argilla/notus-7b-v1,dtype=bfloat16",
+    "batch_size": "8",
+    "batch_sizes": [],
+    "device": null,
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000
+  },
+  "git_hash": null
+}

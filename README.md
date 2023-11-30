@@ -1,83 +1,65 @@
-# 💨 Notus 7B: DPO fine-tune of Zephyr 7B SFT
-
-🤗 HuggingFace Hub Collection at https://huggingface.co/collections/argilla/notus-7b-dpo-fine-tune-of-zephyr-7b-sft-655529d7c73cb6c830e9555a
-
 <div align="center">
-  <img width="702" alt="image" src="https://github.com/argilla-io/notus-7b-dpo/assets/36760800/49bddbd2-ecfc-46d6-8d1d-1cb760dfe08b">
+  <h1>💨 Notus</h1>
+  <img src="https://github.com/argilla-io/notus/assets/36760800/d50bbae1-16ec-40c5-8254-5c4ea60435da" alt="A banner representing Notus, the wind god of the south, in a mythical and artistic style. The banner features a strong, swirling breeze, embodying the warm, wet character of the southern wind. Gracefully flowing across the scene are several paper planes, caught in the gentle yet powerful gusts of Notus. The background is a blend of warm colors, symbolizing the heat of the south, with hints of blue and green to represent the moisture carried by this wind. The overall atmosphere is one of dynamic movement and warmth."/>
 </div>
 
-💥 Chat with Notus at https://argilla-notus-chat-ui.hf.space/ (powered by [`huggingface/chat-ui`](https://github.com/huggingface/chat-ui))
+---
+
+Notus is a collection of fine-tuned models using SFT, DPO, SFT+DPO, and/or any other RLAIF/RLHF techniques; following a data-first, human-centric approach, since that's what we do best at Argilla.
+
+Notus models are intended to be used as assistants via chat-like applications, and are evaluated with Chat (MT-Bench, AlpacaEval) and Academic (Open LLM Leaderboard) benchmarks for a direct comparison with other similar LLMs.
+
+Being able to fine-tune LLMs while still keeping a data-first approach wouldn't have been possible without the inestimable help of the open source community and all the amazing resources out there intended for the general public. We are very grateful for that, and we hope that our work can be useful for others as well.
+
+🎩 h/t HuggingFace H4 team for their amazing work with [`alignment-handbook`](https://github.com/huggingface/alignment-handbook), and also for the fruitful dicussions we had with them and their support.
+
+## News
+
+* **30th November, 2023**: Notus 7B v1 is released! 🎉 Using the same DPO fine-tuning approach as Zephyr 7B Beta, but changing the data source from UltraFeedback to binarize it using the average of the different criterias, instead of the critique score. Notus 7B improved in both AlpacaEval and LM Eval Harness compared to Zephyr 7B Beta, while for MT-Bench the results were on par. More information at [`v1/`](./v1/).
+
+## Resources
+
+### 🤗 HuggingFace Hub Collection
 
 <div align="center">
-  <img width="1624" alt="image" src="https://github.com/argilla-io/notus-7b-dpo/assets/36760800/a950f7f2-74ea-4873-a314-3afd1d4d7ac8">
+  <img width="680" alt="image" src="https://github.com/argilla-io/notus/assets/36760800/08876ba2-ee55-4b80-9256-e0809fb2baf0">
+  <p>Available at: https://huggingface.co/collections/argilla/notus-7b-v1-655529d7c73cb6c830e9555a</p>
 </div>
 
-## Installation
+### 💬 Chat UI
 
-This wouldn't have been possible without the amazing work from the HuggingFace H4 Team and [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook)!
+<div align="center">
+  <img width="1624" alt="image" src="https://github.com/argilla-io/notus/assets/36760800/a950f7f2-74ea-4873-a314-3afd1d4d7ac8">
+  <p>Chat with Notus at https://argilla-notus-chat-ui.hf.space/ (powered by https://github.com/huggingface/chat-ui)</p>
+</div>
 
-```bash
-pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cu118
-pip install git+https://github.com/huggingface/alignment-handbook.git
+## Citation
+
+Since most of the content is ported / adapted from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook), we recommend citing their work.
+
+```bibtex
+@misc{alignment_handbook2023,
+  author = {Lewis Tunstall and Edward Beeching and Nathan Lambert and Nazneen Rajani and Alexander M. Rush and Thomas Wolf},
+  title = {The Alignment Handbook},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/huggingface/alignment-handbook}}
+}
 ```
 
-Finally, if you are willing to push your models to the HuggingFace Hub, you should also login first via
-`huggingface-cli login` and then install Git-LFS as `sudo apt-get install git-lfs`.
+Additionally, if you find any of the contents within this repository useful, please feel free to use the following BibTeX cite as well:
 
-> [!TIP]
-> Additionally, installing both `flash-attn` and `wandb` is recommended. `flash-attn` for a more
-> efficient usage of the VRAM thanks to the Flash Attention 2 mechanism which also implies and speed-up; and
-> `wandb` to also keep track of the experiments on Weights and Biases <3.
-> ```bash
-> python -m pip install flash-attn --no-build-isolation
-> python -m pip install wandb
-> ```
-> If you installed `wandb` above you should also login via `wandb login`
-
-## SFT Fine-Tuning
-
-```bash
-DS_SKIP_CUDA_CHECK=1 WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-sft ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/deepspeed_zero3_a100_80gb_sft.yaml scripts/run_sft.py train_configs/config_a100_80gb_sft.yaml
+```bibtex
+@misc{notus2023,
+  author = {Alvaro Bartolome and Gabriel Martin and Daniel Vila},
+  title = {Notus},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub Repository},
+  howpublished = {\url{https://github.com/argilla-io/notus}}
+}
 ```
 
-## DPO Fine-Tuning
-
-```shell
-DS_SKIP_CUDA_CHECK=1 WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/deepspeed_zero3.yaml scripts/run_dpo.py train_configs/config_a100_40gb.yaml
-```
-
-Alternatively, if you prefer to use LoRA, you can also run:
-
-```shell
-WANDB_ENTITY=argilla-io WANDB_PROJECT=notus-7b-dpo ACCELERATE_LOG_LEVEL=info accelerate launch --config_file accelerate_configs/multi_gpu.yaml scripts/run_dpo.py train_configs/config_a100_40gb_lora.yaml
-```
-
-> [!WARNING]
-> When trying to run the scripts mentioned above and also the ones defined in the original `alignment-handbook`, we found out that the `bitsandbytes` dependency was running into some issues with the environment variable `GOOGLE_VM_CONFIG_LOCK_FILE`, so if you are running on GCP you should edit the `bitsandbytes/cuda_setup/env_vars.py` file to include the environment variable within the `to_be_ignored` function.
-> ```diff
-> def to_be_ignored(env_var: str, value: str) -> bool:
->      ignorable = {
->          "PWD",  # PWD: this is how the shell keeps track of the current working dir
->          "OLDPWD",
->          "SSH_AUTH_SOCK",  # SSH stuff, therefore unrelated
->          "SSH_TTY",
->          "HOME",  # Linux shell default
->          "TMUX",  # Terminal Multiplexer
->          "XDG_DATA_DIRS",  # XDG: Desktop environment stuff
->          "HOME",  # Linux shell default
->          "TMUX",  # Terminal Multiplexer
->          "XDG_DATA_DIRS",  # XDG: Desktop environment stuff
->          "XDG_GREETER_DATA_DIR",  # XDG: Desktop environment stuff
->          "XDG_RUNTIME_DIR",
->          "MAIL",  # something related to emails
->          "SHELL",  # binary for currently invoked shell
->          "DBUS_SESSION_BUS_ADDRESS",  # hardware related
->          "PATH",  # this is for finding binaries, not libraries
->          "LESSOPEN",  # related to the `less` command
->          "LESSCLOSE",
->  +       "GOOGLE_VM_CONFIG_LOCK_FILE", #avoids issues with Permissions on GCP, covered in- https://github.com/TimDettmers/bitsandbytes/issues/620#issuecomment-1666014197
->          "_",  # current Python interpreter
->      }
->      return env_var in ignorable
-> ```
-> More information at https://github.com/TimDettmers/bitsandbytes/issues/620
+> [!NOTE]
+> Alphabetically ordered by last name due to equal contribution.

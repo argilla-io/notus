@@ -1,0 +1,50 @@
+# Ported from https://github.com/huggingface/alignment-handbook/blob/main/recipes/zephyr-7b-beta/sft/config_full.yaml
+# with slight modifications to add `wandb` logging, missing `warmup_ratio: 0.1`, Notus-related stuff. Additionally,
+# also the `max_steps` has been modified from -1 to 99 which is the pre-computed number of steps that equal to 3 epochs
+# after packing the dataset via `ConstantLengthDataset` in `trl` which is done internally by `SFTTrainer`.
+
+# Model arguments
+model_name_or_path: alignment-handbook/zephyr-7b-sft-full
+model_revision: main
+torch_dtype: bfloat16
+use_flash_attention_2: true
+
+# Data training arguments
+dataset_mixer:
+  argilla/ultrafeedback-binarized-preferences: 1.0
+dataset_splits:
+- train
+preprocessing_num_workers: 12
+
+# SFTTrainer config
+bf16: true
+do_eval: true
+evaluation_strategy: steps
+eval_steps: 33
+gradient_accumulation_steps: 2
+gradient_checkpointing: true
+learning_rate: 2.0e-05
+log_level: info
+logging_steps: 5
+lr_scheduler_type: cosine
+max_seq_length: 2048
+max_steps: 99
+# num_train_epochs: 3; removed in favour of `max_steps` due to the issues with `ConstantLengthDataset` in `trl`
+warmup_ratio: 0.1
+output_dir: data/notus-7b-v1.1
+overwrite_output_dir: true
+per_device_eval_batch_size: 16
+per_device_train_batch_size: 32
+push_to_hub: true
+hub_private_repo: true
+hub_model_id: argilla/notus-7b-v1.1
+hub_strategy: every_save
+remove_unused_columns: true
+report_to:
+- wandb
+- tensorboard
+save_strategy: steps
+save_steps: 33
+save_total_limit: null
+seed: 42
+tf32: true
