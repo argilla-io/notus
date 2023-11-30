@@ -5,7 +5,7 @@
 
 ---
 
-Notus 7B v1 is a DPO fine-tuned version of Zephyr 7B Beta SFT fine-tuned on UltraFeedback, but using the average of the different criterias to binarize the data, instead of the critique score; so that the chosen response is based on the average rather than on the critique score. All the training code and configuration has been adapted / ported from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook).
+Notus 7B v1 is a DPO fine-tuned version of Zephyr 7B Beta SFT fine-tuned on UltraFeedback, but using the average of the different attributes to binarize the data, instead of the critique score; so that the chosen response is based on the average rather than on the critique score. All the training code and configuration has been adapted / ported from [`huggingface/alignment-handbook`](https://github.com/huggingface/alignment-handbook).
 
 ## Contents
 

@@ -11,7 +11,7 @@ Notus models are intended to be used as assistants via chat-like applications, a
 
 Being able to fine-tune LLMs while still keeping a data-first approach wouldn't have been possible without the inestimable help of the open source community and all the amazing resources out there intended for the general public. We are very grateful for that, and we hope that our work can be useful for others as well.
 
-🎩 h/t HuggingFace H4 team for their amazing work with [`alignment-handbook`](https://github.com/huggingface/alignment-handbook), and also for the fruitful dicussions we had with them and their support.
+🎩 h/t HuggingFace H4 team for their amazing work with [`alignment-handbook`](https://github.com/huggingface/alignment-handbook), and also for the fruitful discussions we had with them and their support.
 
 ## News
 
