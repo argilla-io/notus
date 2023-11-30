@@ -15,6 +15,8 @@ Here you will find the following directories and files:
 
 * [`eval/`](./eval/): contains the evaluation instructions and results from the benchmarks [`EleutherAI/lm-eval-harness`](https://github.com/EleutherAI/lm-eval-harness) (from the `big-refactor` branch), `MT-Bench` in [`lm-sys/FastChat`](https://github.com/lm-sys/FastChat), and `AlpacaEval` in [`tatsu-lab/alpaca_eval`](https://github.com/tatsu-lab/alpaca_eval).
 
+* [`assets/`](./assets/): contains some the cards for the 🤗 Hub.
+
 * [`alt/`](./alt/): contains some files that have been used for experimentation purposes, but are not needed / required in order to reproduce and / or understand the work done with Notus 7B v1. Disclaimer: expect those files to change, be messy, and not work as intended.
 
 ## Model Details
