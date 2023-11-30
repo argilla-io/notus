@@ -13,6 +13,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# WARNING: this script has been adapted from the original `run_dpo.py` at
+# https://github.com/huggingface/alignment-handbook/blob/main/scripts/run_dpo.py
 
 import logging
 import re
