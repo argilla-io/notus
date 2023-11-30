@@ -1,6 +1,6 @@
 <div align="center">
   <h1>💨 Notus</h1>
-  <img src="https://github.com/argilla-io/notus-7b/assets/36760800/d50bbae1-16ec-40c5-8254-5c4ea60435da" alt="A banner representing Notus, the wind god of the south, in a mythical and artistic style. The banner features a strong, swirling breeze, embodying the warm, wet character of the southern wind. Gracefully flowing across the scene are several paper planes, caught in the gentle yet powerful gusts of Notus. The background is a blend of warm colors, symbolizing the heat of the south, with hints of blue and green to represent the moisture carried by this wind. The overall atmosphere is one of dynamic movement and warmth."/>
+  <img src="https://github.com/argilla-io/notus/assets/36760800/d50bbae1-16ec-40c5-8254-5c4ea60435da" alt="A banner representing Notus, the wind god of the south, in a mythical and artistic style. The banner features a strong, swirling breeze, embodying the warm, wet character of the southern wind. Gracefully flowing across the scene are several paper planes, caught in the gentle yet powerful gusts of Notus. The background is a blend of warm colors, symbolizing the heat of the south, with hints of blue and green to represent the moisture carried by this wind. The overall atmosphere is one of dynamic movement and warmth."/>
 </div>
 
 ---
@@ -15,21 +15,21 @@ Being able to fine-tune LLMs while still keeping a data-first approach wouldn't 
 
 ## News
 
-* 30th November, 2023: **Notus 7B v1 is released! 🎉** Using the same DPO fine-tuning approach as Zephyr 7B Beta, but changing the data source from UltraFeedback to binarize it using the average of the different criterias, instead of the critique score. Notus 7B improved in both AlpacaEval and LM Eval Harness compared to Zephyr 7B Beta, while for MT-Bench the results were a tiny bit behind. More information at [`notus-handbook/v1`](./v1/).
+* **30th November, 2023**: Notus 7B v1 is released! 🎉 Using the same DPO fine-tuning approach as Zephyr 7B Beta, but changing the data source from UltraFeedback to binarize it using the average of the different criterias, instead of the critique score. Notus 7B improved in both AlpacaEval and LM Eval Harness compared to Zephyr 7B Beta, while for MT-Bench the results were a tiny bit behind. More information at [`v1/`](./v1/).
 
 ## Resources
 
 ### 🤗 HuggingFace Hub Collection
 
 <div align="center">
-  <img width="702" alt="image" src="https://github.com/argilla-io/notus-7b-dpo/assets/36760800/49bddbd2-ecfc-46d6-8d1d-1cb760dfe08b">
+  <img width="702" alt="image" src="https://github.com/argilla-io/notus/assets/36760800/49bddbd2-ecfc-46d6-8d1d-1cb760dfe08b">
   <p>Available at: https://huggingface.co/collections/argilla/notus-7b-v1-655529d7c73cb6c830e9555a</p>
 </div>
 
 ### 💬 Chat UI
 
 <div align="center">
-  <img width="1624" alt="image" src="https://github.com/argilla-io/notus-7b-dpo/assets/36760800/a950f7f2-74ea-4873-a314-3afd1d4d7ac8">
+  <img width="1624" alt="image" src="https://github.com/argilla-io/notus/assets/36760800/a950f7f2-74ea-4873-a314-3afd1d4d7ac8">
   <p>Chat with Notus at https://argilla-notus-chat-ui.hf.space/ (powered by https://github.com/huggingface/chat-ui)</p>
 </div>
 

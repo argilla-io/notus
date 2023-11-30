@@ -1,6 +1,6 @@
 <div align="center">
   <h1>💨 Notus 7B v1</h1>
-  <img src="https://github.com/argilla-io/notus-7b/assets/36760800/d50bbae1-16ec-40c5-8254-5c4ea60435da" alt="A banner representing Notus, the wind god of the south, in a mythical and artistic style. The banner features a strong, swirling breeze, embodying the warm, wet character of the southern wind. Gracefully flowing across the scene are several paper planes, caught in the gentle yet powerful gusts of Notus. The background is a blend of warm colors, symbolizing the heat of the south, with hints of blue and green to represent the moisture carried by this wind. The overall atmosphere is one of dynamic movement and warmth."/>
+  <img src="https://github.com/argilla-io/notus/assets/36760800/d50bbae1-16ec-40c5-8254-5c4ea60435da" alt="A banner representing Notus, the wind god of the south, in a mythical and artistic style. The banner features a strong, swirling breeze, embodying the warm, wet character of the southern wind. Gracefully flowing across the scene are several paper planes, caught in the gentle yet powerful gusts of Notus. The background is a blend of warm colors, symbolizing the heat of the south, with hints of blue and green to represent the moisture carried by this wind. The overall atmosphere is one of dynamic movement and warmth."/>
 </div>
 
 ---
@@ -95,13 +95,13 @@ We've tracked all our metrics with [Weights and Biases](https://wandb.ai) (❤�
 #### `notus-7b-v1`
 
 <div align="center">
-  <img width="873" alt="image" src="https://github.com/argilla-io/notus-7b/assets/36760800/87b3f32b-41ff-4283-840f-b8d193b0cb34"/>
+  <img width="873" alt="image" src="https://github.com/argilla-io/notus/assets/36760800/87b3f32b-41ff-4283-840f-b8d193b0cb34"/>
 </div>
 
 #### `notus-7b-v1-lora`
 
 <div align="center">
-  <img width="872" alt="image" src="https://github.com/argilla-io/notus-7b/assets/36760800/aa81e8c3-da90-4e4c-a378-3c9902b421af"/>
+  <img width="872" alt="image" src="https://github.com/argilla-io/notus/assets/36760800/aa81e8c3-da90-4e4c-a378-3c9902b421af"/>
 </div>
 
 ## Reproduce
