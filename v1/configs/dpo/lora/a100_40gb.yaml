@@ -1,7 +1,21 @@
+# Ported from https://github.com/huggingface/alignment-handbook/blob/main/recipes/zephyr-7b-beta/dpo/config_lora.yaml
+# with slight modifications to add `wandb` logging, Notus-related stuff. Also the fine tune is done over the SFT 
+# fine-tuned model instead of over the LoRA fine-tuned model.
+
 # Model arguments
 model_name_or_path: alignment-handbook/zephyr-7b-sft-full
 torch_dtype: auto
-use_flash_attention_2: true
+
+# LoRA arguments
+use_peft: true
+lora_r: 64
+lora_alpha: 16
+lora_dropout: 0.1
+lora_target_modules:
+- q_proj
+- k_proj
+- v_proj
+- o_proj
 
 # Data training arguments
 dataset_mixer:
@@ -14,10 +28,12 @@ preprocessing_num_workers: 12
 bf16: true
 beta: 0.1
 do_eval: true
-evaluation_strategy: steps
+evaluation_strategy: epoch
 eval_steps: 100
-gradient_accumulation_steps: 1
+gradient_accumulation_steps: 32
 gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
 learning_rate: 5.0e-7
 log_level: info
 logging_steps: 10
@@ -26,11 +42,11 @@ max_length: 1024
 max_prompt_length: 512
 num_train_epochs: 3
 optim: rmsprop
-output_dir: data/notus-7b-dpo
-per_device_train_batch_size: 8
+output_dir: data/notus-7b-dpo-lora
+per_device_train_batch_size: 2
 per_device_eval_batch_size: 4
 push_to_hub: true
-hub_model_id: argilla/notus-7b-dpo
+hub_model_id: argilla/notus-7b-dpo-lora
 hub_private_repo: true
 save_strategy: epoch
 save_total_limit: 1

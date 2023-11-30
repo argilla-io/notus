@@ -1,3 +1,5 @@
+# Ported from https://github.com/huggingface/alignment-handbook/blob/main/recipes/accelerate_configs/multi_gpu.yaml
+
 compute_environment: LOCAL_MACHINE
 debug: false
 distributed_type: MULTI_GPU
