@@ -11,7 +11,7 @@ use_flash_attention_2: true
 
 # Data training arguments
 dataset_mixer:
-  argilla/ultrafeedback-binarized-avg-rating-for-dpo: 1.0
+  argilla/ultrafeedback-binarized-preferences: 1.0
 dataset_splits:
 - train
 preprocessing_num_workers: 12

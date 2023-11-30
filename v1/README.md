@@ -86,7 +86,7 @@ We used VMs from different cloud providers based on their availability, but most
 
 ### Training Data
 
-We used a a new curated version of [`openbmb/UltraFeedback`](https://huggingface.co/datasets/openbmb/UltraFeedback), named [`argilla/ultrafeedback-binarized-avg-rating-for-dpo`](https://huggingface.co/argilla/ultrafeedback-binarized-avg-rating-for-dpo).
+We used a a new curated version of [`openbmb/UltraFeedback`](https://huggingface.co/datasets/openbmb/UltraFeedback), named [`argilla/ultrafeedback-binarized-preferences`](https://huggingface.co/argilla/ultrafeedback-binarized-preferences).
 
 ### Training Metrics
 
