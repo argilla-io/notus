@@ -50,7 +50,7 @@
   },
   "config": {
     "model": "hf",
-    "model_args": "pretrained=argilla/notus-7b-dpo,dtype=bfloat16",
+    "model_args": "pretrained=argilla/notus-7b-v1,dtype=bfloat16",
     "batch_size": "2",
     "batch_sizes": [],
     "device": null,

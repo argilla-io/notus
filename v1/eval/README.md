@@ -11,7 +11,7 @@ Install `EleutherAI/lm-eval-harness` as follows from the `big-refactor` branch (
 Then we run it as it follows using `accelerate` (we ran it in a VM with 4 x A100 40GB):
 
 ```bash
-accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks <TASK> --batch_size <BATCH_SIZE> --num_fewshot <NUM_FEW_SHOT> --output_path <OUTPUT_PATH>
+accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --tasks <TASK> --batch_size <BATCH_SIZE> --num_fewshot <NUM_FEW_SHOT> --output_path <OUTPUT_PATH>
 ```
 
 > [!NOTE]
@@ -20,7 +20,7 @@ accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b
 Or without using `accelerate` as:
 
 ```bash
-lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks <TASK> --batch_size <BATCH_SIZE> --num_fewshot <NUM_FEW_SHOT> --output_path <OUTPUT_PATH>
+lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --tasks <TASK> --batch_size <BATCH_SIZE> --num_fewshot <NUM_FEW_SHOT> --output_path <OUTPUT_PATH>
 ```
 
 #### Results
@@ -38,31 +38,31 @@ Results from Mistral and Zephyr models retrieved from https://huggingface.co/spa
 
 * **ARC**
     ```bash
-    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks arc_challenge --batch_size 8 --num_fewshot 25 --output_path arc_results
+    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --tasks arc_challenge --batch_size 8 --num_fewshot 25 --output_path arc_results
     ```
 * **HellaSwag**:
     ```bash
-    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks hellaswag --batch_size 8 --num_fewshot 10 --output_path hellaswag_results
+    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --tasks hellaswag --batch_size 8 --num_fewshot 10 --output_path hellaswag_results
     ```
 * **MMLU**
     ```bash
-    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks mmlu --batch_size 4 --num_fewshot 5 --output_path mmlu_results
+    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --tasks mmlu --batch_size 4 --num_fewshot 5 --output_path mmlu_results
     ```
 * **TruthfulQA**
     ```bash
-    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks truthfulqa --batch_size 8 --num_fewshot 0 --output_path truthfulqa_results
+    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --tasks truthfulqa --batch_size 8 --num_fewshot 0 --output_path truthfulqa_results
     ```
 * **Winogrande**
     ```bash
-    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks winogrande --batch_size 8 --num_fewshot 5 --output_path winogrande_results
+    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --tasks winogrande --batch_size 8 --num_fewshot 5 --output_path winogrande_results
     ```
 * **GSM8K**
     ```bash
-    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks gsm8k --batch_size 8 --num_fewshot 5 --output_path gsm8k_results
+    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --tasks gsm8k --batch_size 8 --num_fewshot 5 --output_path gsm8k_results
     ```
 * **DROP**
     ```bash
-    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks drop --batch_size 2 --num_fewshot 3 --output_path drop_results
+    accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --tasks drop --batch_size 2 --num_fewshot 3 --output_path drop_results
     ```
 
 ### AlpacaEval
