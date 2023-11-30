@@ -1,4 +1,9 @@
-# 💨 Notus Handbook
+<div align="center">
+  <h1>💨 Notus Handbook</h1>
+  <img src="https://github.com/argilla-io/notus-7b/assets/36760800/d50bbae1-16ec-40c5-8254-5c4ea60435da" alt="A banner representing Notus, the wind god of the south, in a mythical and artistic style. The banner features a strong, swirling breeze, embodying the warm, wet character of the southern wind. Gracefully flowing across the scene are several paper planes, caught in the gentle yet powerful gusts of Notus. The background is a blend of warm colors, symbolizing the heat of the south, with hints of blue and green to represent the moisture carried by this wind. The overall atmosphere is one of dynamic movement and warmth."/>
+</div>
+
+---
 
 Notus is a collection of fine-tuned models using SFT, DPO, SFT+DPO, and/or any other RLHF techniques; but always aiming to follow a data-first approach, since that's what we do best at Argilla.
 
@@ -31,7 +36,7 @@ Being able to fine-tune LLMs while still keeping a data-first approach wouldn't 
 ## Citation
 
 ```bibtex
-@misc{alignment_handbook2023,
+@misc{notus_handbook2023,
   author = {Alvaro Bartolome and Gabriel Martin and Daniel Vila},
   title = {Notus Handbook},
   year = {2023},
