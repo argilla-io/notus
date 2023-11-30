@@ -1,8 +1,8 @@
-# Evaluation Benchmarks
+## Evaluation Benchmarks
 
-## LM Evaluation Harness from EleutherAI 
+### LM Evaluation Harness from EleutherAI 
 
-### Install
+#### Install
 
 Install `EleutherAI/lm-eval-harness` as follows from the `big-refactor` branch (still unstable):
 
@@ -23,7 +23,7 @@ Or without using `accelerate` as:
 lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks <TASK> --batch_size <BATCH_SIZE> --num_fewshot <NUM_FEW_SHOT> --output_path <OUTPUT_PATH>
 ```
 
-### Results
+#### Results
 
 | Model | Average ⬆️ | ARC (25-s) ⬆️ | HellaSwag (10-s) ⬆️ | MMLU (5-s) ⬆️ | TruthfulQA (MC2) (0-s) ⬇️ | Winogrande (5-s) ⬇️ | GSM8K (5-s) ⬆️ | DROP (3-s) ⬇️ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -34,7 +34,7 @@ lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 -
 
 Results from Mistral and Zephyr models retrieved from https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard
 
-### Reproduce
+#### Reproduce
 
 * **ARC**
     ```bash
@@ -65,7 +65,7 @@ Results from Mistral and Zephyr models retrieved from https://huggingface.co/spa
     accelerate launch -m lm_eval --model hf --model_args pretrained=argilla/notus-7b-dpo,dtype=bfloat16 --tasks drop --batch_size 2 --num_fewshot 3 --output_path drop_results
     ```
 
-## AlpacaEval
+### AlpacaEval
 
 The machine that we had at that time was one from Intel Developer Cloud (IDC) with HPUs, so we generated the outputs using the script `habana/scripts/inference.py` from this repo:
 
@@ -85,7 +85,7 @@ pip install alpaca-eval
 alpaca_eval evaluate --model_outputs notus-7b-v1.json
 ```
 
-### Results
+#### Results
 
 Results can be found in `alpaca_eval/annotation_alpaca_eval_gpt4.json` and `leaderboard.csv`:
 
@@ -113,6 +113,6 @@ text_davinci_001          15.17            1.24      804         296
 ```
 
 
-## MT-Bench (WIP)
+### MT-Bench (WIP)
 
 ...
