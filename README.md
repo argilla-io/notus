@@ -5,7 +5,7 @@
 
 ---
 
-Notus is a collection of fine-tuned models using SFT, DPO, SFT+DPO, and/or any other RLHF techniques; but always aiming to follow a data-first approach, since that's what we do best at Argilla.
+Notus is a collection of fine-tuned models using SFT, DPO, SFT+DPO, and/or any other RLAIF/RLHF techniques; following a data-first, human-centric approach, since that's what we do best at Argilla.
 
 Notus models are intended to be used as assistants via chat-like applications, and are evaluated with Chat (MT-Bench, AlpacaEval) and Academic (Open LLM Leaderboard) benchmarks for a direct comparison with other similar LLMs.
 
@@ -15,7 +15,7 @@ Being able to fine-tune LLMs while still keeping a data-first approach wouldn't 
 
 ## News
 
-* **30th November, 2023**: Notus 7B v1 is released! 🎉 Using the same DPO fine-tuning approach as Zephyr 7B Beta, but changing the data source from UltraFeedback to binarize it using the average of the different criterias, instead of the critique score. Notus 7B improved in both AlpacaEval and LM Eval Harness compared to Zephyr 7B Beta, while for MT-Bench the results were a tiny bit behind. More information at [`v1/`](./v1/).
+* **30th November, 2023**: Notus 7B v1 is released! 🎉 Using the same DPO fine-tuning approach as Zephyr 7B Beta, but changing the data source from UltraFeedback to binarize it using the average of the different criterias, instead of the critique score. Notus 7B improved in both AlpacaEval and LM Eval Harness compared to Zephyr 7B Beta, while for MT-Bench the results were on par. More information at [`v1/`](./v1/).
 
 ## Resources
 
