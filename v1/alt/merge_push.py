@@ -1,3 +1,8 @@
+# Script adapted from https://github.com/jondurbin/qlora/blob/main/merge.py
+# This script is used to merge the base model and the PEFT model and upload the result to the Hub,
+# with the option to also upload the model if not PEFT adapter.
+# Usage: python merge_push.py --base <base_model> --peft <peft_model> --out <output_model> --push --merge --include-eval
+
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 import torch
@@ -31,30 +36,33 @@ def main():
     model = PeftModel.from_pretrained(base_model, args.peft)
 
     if args.merge:
-        print(f"Running merge_and_unload")
+        print("Running merge_and_unload")
         model = model.merge_and_unload()
 
-    model.save_pretrained(f"{args.out}", safe_serialization=True, max_shard_size="5GB")
+    model.save_pretrained(args.out, safe_serialization=True, max_shard_size="5GB")
 
     tokenizer = AutoTokenizer.from_pretrained(args.base)
-    tokenizer.save_pretrained(f"{args.out}")
+    tokenizer.save_pretrained(args.out)
 
     if args.push:
-        print(f"Saving to hub ...")
-        model.push_to_hub(f"{args.out}", private=True)  # , use_temp_dir=False)
-        tokenizer.push_to_hub(f"{args.out}", private=True)  # , use_temp_dir=False)
+        print("Saving to hub ...")
+        model.push_to_hub(args.out, private=True)
+        tokenizer.push_to_hub(args.out, private=True)
 
     if args.include_eval:
         from huggingface_hub import HfApi
 
         api = HfApi()
         for file in ["all_results.json", "eval_results.json"]:
-            api.upload_file(
-                path_or_fileobj=f"{args.peft}/{file}",
-                path_in_repo=file,
-                repo_id=args.out,
-                repo_type="model",
-            )
+            try:
+                api.upload_file(
+                    path_or_fileobj=f"{args.peft}/{file}",
+                    path_in_repo=file,
+                    repo_id=args.out,
+                    repo_type="model",
+                )
+            except Exception as e:
+                print(f"Failed to upload {file}: {e}")
 
 
 if __name__ == "__main__":
