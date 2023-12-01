@@ -25,14 +25,24 @@ lm_eval --model hf --model_args pretrained=argilla/notus-7b-v1,dtype=bfloat16 --
 
 #### Results
 
-| Model | Average ⬆️ | ARC (25-s) ⬆️ | HellaSwag (10-s) ⬆️ | MMLU (5-s) ⬆️ | TruthfulQA (MC2) (0-s) ⬇️ | Winogrande (5-s) ⬇️ | GSM8K (5-s) ⬆️ | DROP (3-s) ⬇️ |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|[mistralai/Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1) | 50.32 | 59.58 | 83.31 | 64.16 | 42.15 | 78.37 | 18.12 | 6.14 |
-|[HuggingFaceH4/zephyr-7b-alpha](https://huggingface.co/HuggingFaceH4/zephyr-7b-alpha) | 52.4 | 61.01 | 84.04 | 61.39 | 57.9 | 78.61 | 14.03 | 9.82 |
-|[HuggingFaceH4/zephyr-7b-beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta) | 52.15 | 62.03 | 84.36 | 61.07 | 57.45 | 77.74 | 12.74 | 9.66 |
-| **Ours** | **54.09** | 64.25 | 84.90 | 61.69 | 52.77 | 74.51 | 39.5 | 0.98 |
+* Results from [OpenLLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard):
 
-Results from Mistral and Zephyr models retrieved from https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard
+  | Model | Average | ARC | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K | DROP |
+  |-------|---------|-----|-----------|------|------------|------------|-------|------|
+  | [HuggingFaceH4/zephyr-7b-beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta) | 52.15 | 62.03 | 84.36 | 61.07 | **57.45** | 77.74 | 12.74 | **9.66** |
+  | **[argilla/notus-7b-v1](https://huggingface.co/argilla/notus-7b-v1)** | **52.89** | **64.59** | **84.78** | **63.03** | 54.37 | **79.4** | **15.16** | 8.91 |
+
+* Results when running the evaluation locally from the `big-refactor` branch in `lm-eval-harness`:
+
+  | Model | Average ⬆️ | ARC (25-s) ⬆️ | HellaSwag (10-s) ⬆️ | MMLU (5-s) ⬆️ | TruthfulQA (MC2) (0-s) ⬇️ | Winogrande (5-s) ⬇️ | GSM8K (5-s) ⬆️ | DROP (3-s) ⬇️ |
+  | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+  |[HuggingFaceH4/zephyr-7b-beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta) | 52.15 | 62.03 | 84.36 | 61.07 | 57.45 | 77.74 | 12.74 | 9.66 |
+  | **[argilla/notus-7b-v1](https://huggingface.co/argilla/notus-7b-v1)** | **54.09** | 64.25 | 84.90 | 61.69 | 52.77 | 74.51 | 39.5 | 0.98 |
+
+  The results from Mistral and Zephyr models retrieved from https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard, which **may not be fair as they are using a different revision of `lm-eval-harness`**, so may be worth re-running the benchmarks locally for Zephyr 7B Beta for a fair comparison.
+
+⚠️ A data contamination issue has been reported recently by Mistral AI, which led other researchers to explore the contamination within other datasets, and since UltraFeedback (the dataset this model has been fine-tuned on), the TruthfulQA results may be affected, so the score achieved is not realistic. See https://twitter.com/natolambert/status/1730364108078469513.
+
 
 #### Reproduce
 
