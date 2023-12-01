@@ -80,7 +80,7 @@ Table adapted from Zephyr-7b-β original table for [MT-Bench](https://huggingfac
 
   The results from Mistral and Zephyr models retrieved from https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard, which **may not be fair as they are using a different revision of `lm-eval-harness`**, so may be worth re-running the benchmarks locally for Zephyr 7B Beta for a fair comparison.
 
-⚠️ A data contamination issue has been reported recently by Mistral AI, which led other researchers to explore the contamination within other datasets, and since UltraFeedback (the dataset this model has been fine-tuned on), the TruthfulQA results may be affected, so the score achieved is not realistic. See https://twitter.com/natolambert/status/1730364108078469513.
+⚠️ As pointed out by [AllenAI researchers](https://twitter.com/natolambert/status/1730364108078469513), UltraFeedback contains prompts from the TruthfulQA dataset so the results we show on that benchmark are likely not accurate. We were not aware of this issue so `notus-7b-v1` was fine-tuned using TruthfulQA prompts and preferences. For future releases, we will remove TruthfulQA prompts.
 
 ## Training Details
 

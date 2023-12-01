@@ -322,7 +322,7 @@ Results from [OpenLLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/o
 | Zephyr 7B dDPO (HuggingFaceH4/zephyr-7b-beta) | 52.15   | 62.03 | 84.36      | 61.07 | **57.45**  | 77.74      | 12.74 | **9.66**  |
 | argilla/notus-7b-v1                           | **52.89**   | **64.59** | **84.78**  | **63.03** | 54.37       | **79.4**       | **15.16** | 8.91 |
 
-⚠️ A data contamination issue has been reported recently by Mistral AI, which led other researchers to explore the contamination within other datasets, and since UltraFeedback (the dataset this model has been fine-tuned on), the TruthfulQA results may be affected, so the score achieved is not realistic. See https://twitter.com/natolambert/status/1730364108078469513.
+⚠️ As pointed out by [AllenAI researchers](https://twitter.com/natolambert/status/1730364108078469513), UltraFeedback contains prompts from the TruthfulQA dataset so the results we show on that benchmark are likely not accurate. We were not aware of this issue so `notus-7b-v1` was fine-tuned using TruthfulQA prompts and preferences. For future releases, we will remove TruthfulQA prompts.
 
 ## Training Details
 
