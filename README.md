@@ -9,13 +9,15 @@ Notus is a collection of fine-tuned models using SFT, DPO, SFT+DPO, and/or any o
 
 Notus models are intended to be used as assistants via chat-like applications, and are evaluated with Chat (MT-Bench, AlpacaEval) and Academic (Open LLM Leaderboard) benchmarks for a direct comparison with other similar LLMs.
 
+Notus name comes from the ancient Greek god Notus, as a wink to Zephyr, which comes from the ancient Greek god Zephyrus; with the difference that Notus is the god of the south wind, and Zephyr the god of the west wind. More information at https://en.wikipedia.org/wiki/Anemoi.
+
 Being able to fine-tune LLMs while still keeping a data-first approach wouldn't have been possible without the inestimable help of the open source community and all the amazing resources out there intended for the general public. We are very grateful for that, and we hope that our work can be useful for others as well.
 
 🎩 h/t HuggingFace H4 team for their amazing work with [`alignment-handbook`](https://github.com/huggingface/alignment-handbook), and also for the fruitful discussions we had with them and their support.
 
 ## News
 
-* **30th November, 2023**: Notus 7B v1 is released! 🎉 Using the same DPO fine-tuning approach as Zephyr 7B Beta, but changing the data source from UltraFeedback to binarize it using the average of the different criterias, instead of the critique score. Notus 7B improved in both AlpacaEval and LM Eval Harness compared to Zephyr 7B Beta, while for MT-Bench the results were on par. More information at [`v1/`](./v1/).
+* **December 1st, 2023**: Notus 7B v1 is released! 🎉 Using the same DPO fine-tuning approach as Zephyr 7B Beta, but changing the data source from UltraFeedback to binarize it using the average of the different criterias, instead of the critique score. Notus 7B improved in both AlpacaEval and LM Eval Harness compared to Zephyr 7B Beta, while for MT-Bench the results were on par. More information at [`v1/`](./v1/).
 
 ## Resources
 
