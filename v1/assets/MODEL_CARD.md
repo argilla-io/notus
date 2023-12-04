@@ -167,7 +167,7 @@ model-index:
 ---
 
 <div align="center">
-  <img src="https://cdn-uploads.huggingface.co/production/uploads/60420dccc15e823a685f2b03/CuMO3IjJfymC94_5qd15T.png"/>
+  <img src="https://cdn-uploads.huggingface.co/production/uploads/60f0608166e5701b80ed3f02/dj-spsk9eXMMXVGxK6jRz.png" alt="A banner representing Notus, the wind god of the south, in a mythical and artistic style. The banner features a strong, swirling breeze, embodying the warm, wet character of the southern wind. Gracefully flowing across the scene are several paper planes, caught in the gentle yet powerful gusts of Notus. The background is a blend of warm colors, symbolizing the heat of the south, with hints of blue and green to represent the moisture carried by this wind. The overall atmosphere is one of dynamic movement and warmth."/>
 </div>
 
 # Model Card for Notus 7B v1
