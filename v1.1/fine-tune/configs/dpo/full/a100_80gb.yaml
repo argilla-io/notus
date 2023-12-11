@@ -6,7 +6,7 @@ model_name_or_path: alignment-handbook/zephyr-7b-sft-full
 
 # Data training arguments
 dataset_mixer:
-  argilla/ultrafeedback-multi-binarized-preferences-cleaned: 1.0
+  argilla/ultrafeedback-multi-binarized-quality-preferences-cleaned: 1.0
 dataset_splits:
 - train
 preprocessing_num_workers: 12
