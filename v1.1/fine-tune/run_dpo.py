@@ -112,21 +112,11 @@ def main():
             },
             {
                 "role": "user",
-                "content": example["instruction"],
+                "content": example["prompt"],
             },
         ]
-        chosen = [
-            {
-                "role": "assistant",
-                "content": example["chosen_response"],
-            }
-        ]
-        rejected = [
-            {
-                "role": "assistant",
-                "content": example["rejected_response"],
-            }
-        ]
+        chosen = example["chosen"][1:]
+        rejected = example["rejected"][1:]
 
         def _strip_prefix(pattern: str, text: str) -> str:
             # Use re.escape to escape any special characters in the pattern
