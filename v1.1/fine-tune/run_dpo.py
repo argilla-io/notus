@@ -112,11 +112,11 @@ def main():
             },
             {
                 "role": "user",
-                "content": example["prompt"],
+                "content": example["chat_prompt"],
             },
         ]
-        chosen = example["chosen"][1:]
-        rejected = example["rejected"][1:]
+        chosen = example["chat_chosen"][1:]
+        rejected = example["chat_rejected"][1:]
 
         def _strip_prefix(pattern: str, text: str) -> str:
             # Use re.escape to escape any special characters in the pattern
@@ -144,6 +144,14 @@ def main():
     #####################
     # Apply chat template (modified)
     #####################
+    dataset = dataset.rename_columns(
+        {
+            "prompt": "chat_prompt",
+            "chosen": "chat_chosen",
+            "rejected": "chat_rejected",
+        }
+    )
+    column_names = dataset["train"].column_names
     dataset = dataset.map(
         apply_chat_template_and_prepare_for_dpo,
         fn_kwargs={"tokenizer": tokenizer},
