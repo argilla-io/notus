@@ -26,8 +26,6 @@ Finally, if you are willing to push your models to the HuggingFace Hub, you shou
 
 ## DPO Fine-tuning
 
-To reproduce the DPO full fine-tuning, you can run the following command (assuming you are running it in a VM with 8 x A100 40GB GPUs, see [`configs/`](configs/) for more information on the different configuration files):
-
 ```shell
 ACCELERATE_LOG_LEVEL=info accelerate launch --config_file configs/deepspeed_zero3.yaml run_dpo.py configs/accelerate.yaml
 ```
