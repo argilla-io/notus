@@ -1,0 +1,42 @@
+# Ported from https://github.com/huggingface/alignment-handbook/blob/main/recipes/zephyr-7b-beta/dpo/config_full.yaml
+# with slight modifications to add `wandb` logging, missing `warmup_ratio: 0.1`, Notus-related stuff.
+
+# Model arguments
+model_name_or_path: mistralai/Mixtral-8x7B-Instruct-v0.1
+
+# Data training arguments
+dataset_mixer:
+  argilla/ultrafeedback-binarized-preferences-cleaned: 1.0
+dataset_splits:
+- train
+preprocessing_num_workers: 12
+
+# DPOTrainer arguments
+bf16: true
+beta: 0.1
+do_eval: true
+evaluation_strategy: steps
+eval_steps: 100
+gradient_accumulation_steps: 1
+gradient_checkpointing: true
+learning_rate: 5.0e-7
+log_level: info
+logging_steps: 10
+lr_scheduler_type: linear
+max_length: 1024
+max_prompt_length: 512
+num_train_epochs: 3
+optim: rmsprop
+output_dir: data/notux-8x7b-v1
+per_device_train_batch_size: 8
+per_device_eval_batch_size: 4
+push_to_hub: true
+hub_model_id: argilla/notux-8x7b-v1
+hub_private_repo: true
+save_strategy: epoch
+save_total_limit: 1
+seed: 42
+warmup_ratio: 0.1
+report_to:
+  - wandb
+  - tensorboard
