@@ -3,13 +3,13 @@
 # if work in 8 x A100 40GB by adding `torch_dtype: bfloat16` and `use_flash_attention_2: true`
 
 # Model arguments
-model_name_or_path: alignment-handbook/zephyr-7b-sft-full
+model_name_or_path: mistralai/Mixtral-8x7B-Instruct-v0.1
 torch_dtype: auto
 use_flash_attention_2: true
 
 # Data training arguments
 dataset_mixer:
-  argilla/ultrafeedback-binarized-preferences: 1.0
+  argilla/ultrafeedback-binarized-preferences-cleaned: 1.0
 dataset_splits:
 - train
 preprocessing_num_workers: 12
@@ -30,11 +30,11 @@ max_length: 1024
 max_prompt_length: 512
 num_train_epochs: 3
 optim: rmsprop
-output_dir: data/notus-7b-v1
+output_dir: data/notux-8x7b-v1
 per_device_train_batch_size: 8
 per_device_eval_batch_size: 4
 push_to_hub: true
-hub_model_id: argilla/notus-7b-v1
+hub_model_id: argilla/notux-8x7b-v1
 hub_private_repo: true
 save_strategy: epoch
 save_total_limit: 1
