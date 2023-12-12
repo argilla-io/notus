@@ -7,8 +7,8 @@ This wouldn't have been possible without the amazing work from the HuggingFace H
 
 ```bash
 pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cu118
-pip install transformers==4.36.0
 pip install git+https://github.com/huggingface/alignment-handbook.git
+pip install transformers==4.36.0
 ```
 
 Finally, if you are willing to push your models to the HuggingFace Hub, you should also login first via
@@ -29,11 +29,11 @@ Finally, if you are willing to push your models to the HuggingFace Hub, you shou
 To reproduce the DPO full fine-tuning, you can run the following command (assuming you are running it in a VM with 8 x A100 40GB GPUs, see [`configs/`](configs/) for more information on the different configuration files):
 
 ```shell
-ACCELERATE_LOG_LEVEL=info accelerate launch --config_file configs/accelerate/a100_80gb/deepspeed_zero3.yaml run_dpo.py configs/dpo/full/a100_80gb.yaml
+ACCELERATE_LOG_LEVEL=info accelerate launch --config_file configs/deepspeed_zero3.yaml run_dpo.py configs/accelerate.yaml
 ```
 
 And with `nohup` as:
 
 ```shell
-ACCELERATE_LOG_LEVEL=info nohup accelerate launch --config_file configs/accelerate/a100_80gb/deepspeed_zero3.yaml run_dpo.py configs/dpo/full/a100_80gb.yaml > output.log 2>&1 &
+ACCELERATE_LOG_LEVEL=info nohup accelerate launch --config_file configs/deepspeed_zero3.yaml run_dpo.py configs/accelerate.yaml > output.log 2>&1 &
 ```

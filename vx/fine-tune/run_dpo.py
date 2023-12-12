@@ -24,7 +24,7 @@ from datetime import timedelta
 
 import torch
 import transformers
-from transformers import AutoModelForCausalLM, set_seed
+from transformers import set_seed
 
 from accelerate import Accelerator, InitProcessGroupKwargs
 from alignment import (
@@ -33,14 +33,10 @@ from alignment import (
     H4ArgumentParser,
     ModelArguments,
     get_datasets,
-    get_kbit_device_map,
-    get_peft_config,
-    get_quantization_config,
     get_tokenizer,
     is_adapter_model,
 )
 from datasets import DatasetDict
-from peft import PeftConfig, PeftModel
 from trl import DPOTrainer
 
 
@@ -84,7 +80,7 @@ def main():
     raw_dataset = get_datasets(
         data_args, splits=data_args.dataset_splits
     )  # TODO: remove dep with `get_datasets`
-    split_dataset = raw_dataset["train"].train_test_split(test_size=5000, seed=training_args.seed, shuffle=True)  # type: ignore
+    split_dataset = raw_dataset["train"].train_test_split(test_size=2000, seed=training_args.seed, shuffle=True)  # type: ignore
 
     dataset = DatasetDict(
         {"train": split_dataset["train"], "test": split_dataset["test"]}
@@ -149,46 +145,46 @@ def main():
         use_flash_attention_2=model_args.use_flash_attention_2,
         torch_dtype=torch_dtype,
         use_cache=False if training_args.gradient_checkpointing else True,
-        device_map=get_kbit_device_map(),
-        quantization_config=get_quantization_config(model_args),
+        # device_map=get_kbit_device_map(),
+        # quantization_config=get_quantization_config(model_args),
     )
 
     model = model_args.model_name_or_path
-    if is_adapter_model(model, model_args.model_revision):
-        # load the model, merge the adapter weights and unload the adapter
-        # Note: to run QLora, you will need to merge the based model separately as the merged model in 16bit
-        logger.info(f"Merging peft adapters for {model_args.model_name_or_path=}")
+    # if is_adapter_model(model, model_args.model_revision):
+    #     # load the model, merge the adapter weights and unload the adapter
+    #     # Note: to run QLora, you will need to merge the based model separately as the merged model in 16bit
+    #     logger.info(f"Merging peft adapters for {model_args.model_name_or_path=}")
 
-        peft_config = PeftConfig.from_pretrained(
-            model_args.model_name_or_path, revision=model_args.model_revision
-        )
+    #     peft_config = PeftConfig.from_pretrained(
+    #         model_args.model_name_or_path, revision=model_args.model_revision
+    #     )
 
-        model_kwargs = dict(
-            revision=model_args.base_model_revision,
-            trust_remote_code=model_args.trust_remote_code,
-            use_flash_attention_2=model_args.use_flash_attention_2,
-            torch_dtype=torch_dtype,
-            use_cache=False if training_args.gradient_checkpointing else True,
-        )
-        base_model = AutoModelForCausalLM.from_pretrained(
-            peft_config.base_model_name_or_path,
-            **model_kwargs,
-        )
-        model = PeftModel.from_pretrained(
-            base_model,
-            model_args.model_name_or_path,
-            revision=model_args.model_revision,
-        )
-        model.eval()
-        model = model.merge_and_unload()
-        model_kwargs = None
+    #     model_kwargs = dict(
+    #         revision=model_args.base_model_revision,
+    #         trust_remote_code=model_args.trust_remote_code,
+    #         use_flash_attention_2=model_args.use_flash_attention_2,
+    #         torch_dtype=torch_dtype,
+    #         use_cache=False if training_args.gradient_checkpointing else True,
+    #     )
+    #     base_model = AutoModelForCausalLM.from_pretrained(
+    #         peft_config.base_model_name_or_path,
+    #         **model_kwargs,
+    #     )
+    #     model = PeftModel.from_pretrained(
+    #         base_model,
+    #         model_args.model_name_or_path,
+    #         revision=model_args.model_revision,
+    #     )
+    #     model.eval()
+    #     model = model.merge_and_unload()
+    #     model_kwargs = None
 
     ref_model = model
     ref_model_kwargs = model_kwargs
 
-    if model_args.use_peft is True:
-        ref_model = None
-        ref_model_kwargs = None
+    # if model_args.use_peft is True:
+    #     ref_model = None
+    #     ref_model_kwargs = None
 
     #########################
     # Instantiate DPO trainer
@@ -205,7 +201,7 @@ def main():
         tokenizer=tokenizer,
         max_length=training_args.max_length,
         max_prompt_length=training_args.max_prompt_length,
-        peft_config=get_peft_config(model_args),
+        # peft_config=get_peft_config(model_args),
     )
 
     ###############
