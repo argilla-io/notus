@@ -12,8 +12,12 @@ deepspeed_config:
   zero3_init_flag: true
   zero3_save_16bit_model: true
   zero_stage: 3
+  gradient_accumulation_steps: auto
+  gradient_clipping: 1.0
+  train_batch_size: auto
+  train_micro_batch_size_per_gpu: auto
 distributed_type: DEEPSPEED
-downcast_bf16: 'no'
+downcast_bf16: no
 machine_rank: 0
 main_training_function: main
 mixed_precision: bf16
