@@ -97,9 +97,11 @@ def main():
     ###########################
     # Data preparation function (modified)
     ###########################
-    def apply_instruction_format_and_prepare_for_dpo(example: Dict[str, Any]) -> Dict[str, Any]:
-        example["chosen"] = f" {example['chosen'][-1]["content"]}"
-        example["rejected"] = f" {example['rejected'][-1]["content"]}"
+    def apply_instruction_format_and_prepare_for_dpo(
+        example: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        example["chosen"] = f" {example['chosen'][-1]['content']}"
+        example["rejected"] = f" {example['rejected'][-1]['content']}"
         example["prompt"] = f" [INST] {example['chat_prompt']} [/INST]"
         return example
 
