@@ -18,14 +18,13 @@
 # https://github.com/huggingface/alignment-handbook/blob/main/scripts/run_dpo.py
 
 import logging
-import re
 import sys
 from typing import Any, Dict
 from datetime import timedelta
 
 import torch
 import transformers
-from transformers import AutoModelForCausalLM, PreTrainedTokenizer, set_seed
+from transformers import AutoModelForCausalLM, set_seed
 
 from accelerate import Accelerator, InitProcessGroupKwargs
 from alignment import (
@@ -98,37 +97,10 @@ def main():
     ###########################
     # Data preparation function (modified)
     ###########################
-    def apply_chat_template_and_prepare_for_dpo(
-        example: Dict[str, Any], tokenizer: PreTrainedTokenizer
-    ) -> Dict[str, Any]:
-        """This is a modified function from the original `alignment.data.apply_chat_template` to suit not just the DPO task
-        but also any dataset produced by `distilabel`."""
-        prompt = [
-            {
-                "role": "system",
-                "content": "",
-            },
-            {
-                "role": "user",
-                "content": example["chat_prompt"],
-            },
-        ]
-        chosen = example["chat_chosen"][1:]
-        rejected = example["chat_rejected"][1:]
-
-        def _strip_prefix(pattern: str, text: str) -> str:
-            # Use re.escape to escape any special characters in the pattern
-            return re.sub(f"^{re.escape(pattern)}", "", text)
-
-        example["chosen"] = _strip_prefix(
-            "<|assistant|>\n", tokenizer.apply_chat_template(chosen, tokenize=False)
-        )
-        example["rejected"] = _strip_prefix(
-            "<|assistant|>\n", tokenizer.apply_chat_template(rejected, tokenize=False)
-        )
-        example["prompt"] = tokenizer.apply_chat_template(
-            prompt, tokenize=False, add_generation_prompt=True
-        )
+    def apply_instruction_format_and_prepare_for_dpo(example: Dict[str, Any]) -> Dict[str, Any]:
+        example["chosen"] = f" {example['chosen'][-1]["content"]}"
+        example["rejected"] = f" {example['rejected'][-1]["content"]}"
+        example["prompt"] = f" [INST] {example['chat_prompt']} [/INST]"
         return example
 
     #####################################
@@ -151,11 +123,10 @@ def main():
     )
     column_names = dataset["train"].column_names
     dataset = dataset.map(
-        apply_chat_template_and_prepare_for_dpo,
-        fn_kwargs={"tokenizer": tokenizer},
+        apply_instruction_format_and_prepare_for_dpo,
         num_proc=data_args.preprocessing_num_workers,
         remove_columns=column_names,
-        desc="Formatting comparisons with prompt template",
+        desc="Formatting comparisons with instruct template",
     )
     logger.info(f"Column names: {column_names}")
 
