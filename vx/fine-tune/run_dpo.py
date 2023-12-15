@@ -34,7 +34,6 @@ from alignment import (
     ModelArguments,
     get_datasets,
     get_tokenizer,
-    is_adapter_model,
 )
 from datasets import DatasetDict
 from trl import DPOTrainer
